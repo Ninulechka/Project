@@ -13,11 +13,8 @@ import static java.lang.System.out;
 public class Figures {
 
     public static void main(String[] args) throws Exception {
-        Triangle tr = new Triangle();
-        Circle cir = new Circle();
-        Square sq = new Square();
 
-        List<String> list = new ArrayList<>();
+        List<Shape> list = new ArrayList<>();
 
         List<String> list1 = new ArrayList<>(Arrays.asList("Triangle", "Circle", "Square"));
 
@@ -32,44 +29,49 @@ public class Figures {
             }
 
             if (c == 0) {
-                list.add("Triangle");
+                Triangle triangle = new Triangle();
                 double[] arr;
-                int number = tr.numberParameters();
+                System.out.println("Input " + triangle.numberParameters() + " parameters");
+                int number = triangle.numberParameters();
                 BufferedReader br;
                 arr = new double[number];
                 for (int j = 0; j < arr.length; j++) {
                     br = new BufferedReader(new InputStreamReader(in));
                     arr[j] = Double.parseDouble(br.readLine());
+                    triangle.setLeg1(arr[0]);
+                    triangle.setLeg2(arr[1]);
+                    triangle.setHypotenuse(arr[2]);
                 }
-                tr.leg1 = arr[0];
-                tr.leg2 = arr[1];
-                tr.hypotenuse = arr[2];
+                list.add(triangle);
             }
             if (c == 1) {
-                list.add("Circle");
+                Circle circle = new Circle();
                 double[] arr1;
-                int number = cir.numberParameters();
+                System.out.println("Input " + circle.numberParameters() + " parameters");
+                int number = circle.numberParameters();
                 BufferedReader br;
                 arr1 = new double[number];
                 for (int j = 0; j < arr1.length; j++) {
                     br = new BufferedReader(new InputStreamReader(in));
                     arr1[j] = Double.parseDouble(br.readLine());
-                    cir.radious = arr1[j];
+                    circle.setRadious(arr1[j]);
                 }
+                list.add(circle);
             }
             if (c == 2) {
-                list.add("Square");
+                Square square = new Square();
                 double[] arr2;
-                int number = sq.numberParameters();
+                System.out.println("Input " + square.numberParameters() + " parameters");
+                int number = square.numberParameters();
                 BufferedReader br;
                 arr2 = new double[number];
                 for (int j = 0; j < arr2.length; j++) {
                     br = new BufferedReader(new InputStreamReader(in));
                     arr2[j] = Double.parseDouble(br.readLine());
-                    sq.side = arr2[j];
+                    square.setSide(arr2[j]);
                 }
+                list.add(square);
             }
-
             out.println("Do you want to input new shape? Input yes or no");
             String d = new BufferedReader(new InputStreamReader(in)).readLine();
             while (!(d.equals("yes") || d.equals("no"))) {
@@ -82,17 +84,8 @@ public class Figures {
                 break;
             }
         }
-        Object[] array = list.toArray();
-        for (int j = 0; j < array.length; j++) {
-            if (array[j].equals("Triangle")) {
-                tr.showFigure();
-            }
-            if (array[j].equals("Circle")) {
-                cir.showFigure();
-            }
-            if (array[j].equals("Square")) {
-                sq.showFigure();
-            }
+        for (Shape f : list) {
+            System.out.println("Figure is " + f.type() + ", Perimeter = " + f.getPerimeter() + ", Area = " + f.getArea());
         }
     }
 
@@ -103,6 +96,8 @@ public class Figures {
         out.println("Input shape number that you want:");
 
     }
+
+
 }
 
 

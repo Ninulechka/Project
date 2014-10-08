@@ -3,15 +3,13 @@ package figures;
 
 interface Shape {
 
-    public double area();
-    public void calculatedArea();
+    public double getArea();
 
-    public double perimeter();
-    public void calculatedPerimeter();
+    public double getPerimeter();
 
-    public void showFigure();
+    public String type();
 
-    int numberParameters();
+     int numberParameters();
 
 
 }

@@ -1,14 +1,21 @@
 package figures;
 
 
-public class Triangle extends Figure1 implements Shape {
+public class Triangle implements Shape {
     public double leg1;
     public double leg2;
     public double hypotenuse;
-    int parameter = 3;
+    private final int PARAMETER = 3;
+    public String type = "Triangle";
 
     public Triangle() {
 
+    }
+
+    public Triangle(double leg1, double leg2, double hypotenuse) {
+        this.leg1 = leg1;
+        this.leg2 = leg2;
+        this.hypotenuse = hypotenuse;
     }
 
     public void setLeg1(double a) {
@@ -36,51 +43,22 @@ public class Triangle extends Figure1 implements Shape {
     }
 
     @Override
-    public double area() {
-        this.calculatedArea();
-        return this.area;
-    }
-
-    public double getArea(){
-        return area();
+    public double getArea() {
+        return (this.leg1 * this.leg2) / 2;
     }
 
     @Override
-    public void calculatedArea() {
-        this.area = (this.leg1 * this.leg2) / 2;
-    }
-
-
-    @Override
-    public double perimeter() {
-        this.calculatedPerimeter();
-        return this.perimeter;
-    }
-
     public double getPerimeter() {
-        return perimeter();
+        return this.leg1 + this.leg2 + this.hypotenuse;
     }
 
     @Override
-    public void calculatedPerimeter() {
-
-        this.perimeter = getLeg1() + getLeg2() + getHypotenuse();
-    }
-
-    @Override
-    public void showFigure() {
-        System.out.println("Figure is Triangle:");
-        System.out.println("Leg1 = " + getLeg1());
-        System.out.println("Leg2 = " + getLeg2());
-        System.out.println("Hypotenuse = " + getHypotenuse());
-        System.out.println("Area = " + getArea());
-        System.out.println("Perimeter = " + getPerimeter());
-        System.out.println();
+    public String type() {
+        return this.type;
     }
 
     @Override
     public int numberParameters() {
-        System.out.println("Input " + parameter + " parameters: ");
-        return 3;
+        return PARAMETER;
     }
 }
